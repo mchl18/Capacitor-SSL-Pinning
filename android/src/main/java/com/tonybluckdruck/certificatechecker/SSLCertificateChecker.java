@@ -33,6 +33,12 @@ public class SSLCertificateChecker extends Plugin {
             return;
         }
 
+        // add a check for https://
+        if (!url.startsWith("https://")) {
+            call.reject("URL is not HTTPS");
+            return;
+        }
+
         try {
             Certificate cert = getCertificate(url);
             String actualFingerprint = getFingerprint(cert);

@@ -7,6 +7,11 @@ class SSLCertificateChecker {
             print("Invalid URL")
             return false
         }
+        // add a check for https://
+        guard url.scheme == "https" else {
+            print("URL is not HTTPS")
+            return false
+        }
 
         let semaphore = DispatchSemaphore(value: 0)
         var result = false
