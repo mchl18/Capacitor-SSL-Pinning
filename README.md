@@ -27,7 +27,8 @@ npx cap sync
 
 <docgen-index>
 
-- [`checkCertificate(...)`](#checkcertificate)
+* [`checkCertificate(...)`](#checkcertificate)
+* [Type Aliases](#type-aliases)
 
 </docgen-index>
 
@@ -37,59 +38,29 @@ npx cap sync
 ### checkCertificate(...)
 
 ```typescript
-
-export type SSLCertificateCheckerOptions = {
-  url: string;
-  fingerprint: string;
-};
-
-export type SSLCertificateCheckerResult = {
-  /**
-   * The subject of the certificate
-   * @platform Android
-   */
-  subject?: string;
-  /**
-   * The issuer of the certificate
-   * @platform Android
-   */
-  issuer?: string;
-  /**
-   * The valid from date of the certificate
-   * @platform Android
-   */
-  validFrom?: string;
-  /**
-   * The valid to date of the certificate
-   * @platform Android
-   */
-  validTo?: string;
-  /**
-   * The fingerprint of the certificate
-   * @platform Android
-   */
-  fingerprint?: string;
-  /**
-   * Whether the fingerprint matches the expected fingerprint
-   */
-  fingerprintMatched?: boolean;
-  /**
-   * The error that occurred while checking the certificate
-   */
-  error?: string;
-};
-
-
 checkCertificate(options: SSLCertificateCheckerOptions) => Promise<SSLCertificateCheckerResult>
 ```
 
-| Param         | Type                                      |
-| ------------- | ----------------------------------------- |
-| **`options`** | <code>SSLCertificateCheckerOptions</code> |
+| Param         | Type                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#sslcertificatecheckeroptions">SSLCertificateCheckerOptions</a></code> |
 
-**Returns:** <code>Promise&lt;SSLCertificateCheckerResult&gt;</code>
+**Returns:** <code>Promise&lt;<a href="#sslcertificatecheckerresult">SSLCertificateCheckerResult</a>&gt;</code>
 
----
+--------------------
+
+
+### Type Aliases
+
+
+#### SSLCertificateCheckerResult
+
+<code>{ /** * The subject of the certificate * @platform Android */ subject?: string; /** * The issuer of the certificate * @platform Android */ issuer?: string; /** * The valid from date of the certificate * @platform Android */ validFrom?: string; /** * The valid to date of the certificate * @platform Android */ validTo?: string; /** * The fingerprint of the certificate * @platform Android */ fingerprint?: string; /** * Whether the fingerprint matches the expected fingerprint */ fingerprintMatched?: boolean; /** * The error that occurred while checking the certificate */ error?: string; }</code>
+
+
+#### SSLCertificateCheckerOptions
+
+<code>{ url: string; fingerprint: string; }</code>
 
 </docgen-api>
 

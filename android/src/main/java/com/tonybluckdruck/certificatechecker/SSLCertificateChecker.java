@@ -1,4 +1,4 @@
-// android/src/main/java/com/your/plugin/CertificateChecker.java
+// android/src/main/java/com/your/plugin/CapacitorSslPinning.java
 
 package com.tonybluckdruck.certificatechecker;
 
