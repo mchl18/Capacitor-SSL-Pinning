@@ -15,6 +15,17 @@ npm install /path/to/cloned/Capacitor-SSL-Pinning
 npx cap sync
 ```
 
+## Obtain fingerprint
+
+### via website
+- go to https://www.samltool.com/fingerprint.php
+- enter domain name
+- copy fingerprint (with colons)
+
+### via command line
+- get cert via browser: https://superuser.com/questions/1833063/how-to-get-a-certificate-out-of-chrome-now-the-padlock-has-gone
+- get fingerprint: `openssl x509 -noout -fingerprint -sha256 -inform pem -in /path/to/cert.pem`
+
 ## API
 
 <docgen-index>
@@ -120,7 +131,7 @@ export class SslPinningInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return from(
       SSLCertificateChecker.checkCertificate({
-        url: environment.baseUrlBase,
+        url: environment.baseUrl,
         fingerprint: environment.fingerprint,
       })
     ).pipe(
