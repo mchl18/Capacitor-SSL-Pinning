@@ -118,7 +118,7 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { from, Observable, switchMap, throwError } from 'rxjs';
-import { SSLCertificateChecker } from 'certificate-checker';
+import { SSLCertificateChecker } from 'capacitor-ssl-pinning';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
