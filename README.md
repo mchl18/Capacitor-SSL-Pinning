@@ -1,7 +1,7 @@
 # Capacitor SSL Pinning
 
 Ionic Capacitor Plugin to perform SSL checking/pinning.
-Will soon be published to npm.
+https://www.npmjs.com/package/capacitor-ssl-pinning
 
 ## Install
 
