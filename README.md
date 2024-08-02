@@ -1,6 +1,8 @@
 # Capacitor SSL Pinning
 
 Ionic Capacitor Plugin to perform SSL checking/pinning.
+Checks the SSL certificate of a server and compares the fingerprint to a provided fingerprint.
+On Android, the plugin also returns some additional information about the certificate.
 
 [![HitCount](https://hits.dwyl.com/mchl18/capacitor-ssl-pinning.svg)](https://hits.dwyl.com/mchl18/capacitor-ssl-pinning)
 
