@@ -1,7 +1,7 @@
 {
-  "name": "certificate-checker",
+  "name": "capacitor-ssl-pinning",
   "version": "0.0.1",
-  "description": "Check SSL certificates",
+  "description": "Check/pin SSL certificates",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -15,14 +15,14 @@
     "Package.swift",
     "CertificateChecker.podspec"
   ],
-  "author": "mgerullis@pm.me",
+  "author": "michigerullis92@gmail.com",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mchl18/certificate-checker.git"
+    "url": "git+https://github.com/mchl18/Capacitor-SSL-Pinning"
   },
   "bugs": {
-    "url": "https://github.com/mchl18/certificate-checker/issues"
+    "url": "https://github.com/mchl18/Capacitor-SSL-Pinning/issues"
   },
   "keywords": [
     "capacitor",
