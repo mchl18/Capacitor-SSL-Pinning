@@ -16,6 +16,7 @@ npx cap sync
 
 - go to https://www.samltool.com/fingerprint.php
 - enter domain name
+- select SHA-256 as Algorithm
 - copy fingerprint (with colons)
 
 ### via command line
