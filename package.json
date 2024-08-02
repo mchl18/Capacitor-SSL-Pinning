@@ -27,7 +27,13 @@
   "keywords": [
     "capacitor",
     "plugin",
-    "native"
+    "native",
+    "ssl",
+    "pinning",
+    "certificate",
+    "cert",
+    "ssl",
+    "https"
   ],
   "scripts": {
     "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
