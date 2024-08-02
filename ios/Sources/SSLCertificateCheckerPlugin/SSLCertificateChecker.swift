@@ -31,11 +31,13 @@ class CertificateCheckDelegate: NSObject, URLSessionDelegate {
     private let expectedFingerprint: String
     private let completion: (Bool) -> Void
 
+    // init is the initializer for the class
     init(expectedFingerprint: String, completion: @escaping (Bool) -> Void) {
         self.expectedFingerprint = expectedFingerprint
         self.completion = completion
     }
 
+    // urlSession is the method that is called when a URLSession receives a challenge
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         guard let serverTrust = challenge.protectionSpace.serverTrust,
               let certificate = SecTrustGetCertificateAtIndex(serverTrust, 0) else {
@@ -58,6 +60,7 @@ class CertificateCheckDelegate: NSObject, URLSessionDelegate {
         }
     }
 
+    // certificateFingerprint is the method that gets the fingerprint of the certificate
     private func certificateFingerprint(_ certificate: SecCertificate) -> String {
         if let data = SecCertificateCopyData(certificate) as Data? {
             let hash = SHA256.hash(data: data)

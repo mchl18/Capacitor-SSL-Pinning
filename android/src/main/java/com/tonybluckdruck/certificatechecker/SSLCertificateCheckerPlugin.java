@@ -6,6 +6,7 @@ import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 
+// Plugin annotation is used to register the plugin with the Capacitor framework
 @CapacitorPlugin(name = "SSLCertificateChecker")
 public class SSLCertificateCheckerPlugin extends Plugin {
 
