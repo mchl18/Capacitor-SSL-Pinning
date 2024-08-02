@@ -2,6 +2,9 @@
 
 Ionic Capacitor Plugin to perform SSL checking/pinning.
 
+[![HitCount](https://hits.dwyl.com/mchl18/capacitor-ssl-pinning.svg)](https://hits.dwyl.com/mchl18/capacitor-ssl-pinning)
+
+
 [![https://nodei.co/npm/capacitor-ssl-pinning.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/capacitor-ssl-pinning.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/capacitor-ssl-pinning)
 
 ## Install
