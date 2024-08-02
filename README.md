@@ -120,26 +120,32 @@ import {
 import { from, Observable, switchMap, throwError } from 'rxjs';
 import { SSLCertificateChecker } from 'capacitor-ssl-pinning';
 import { environment } from 'src/environments/environment';
+import { Capacitor } from '@capacitor/core';
 
 @Injectable()
 export class SslPinningInterceptor implements HttpInterceptor {
   intercept(
     request: HttpRequest<any>,
-    next: HttpHandler,
+    next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    // only available on android/ios
+    if (Capacitor.getPlatform() === 'web') {
+      return next.handle(request);
+    }
     return from(
       SSLCertificateChecker.checkCertificate({
-        url: environment.baseUrl,
+        url: environment.baseUrlBase,
         fingerprint: environment.fingerprint,
-      }),
+      })
     ).pipe(
-      switchMap(res => {
+      switchMap((res) => {
         if (res.fingerprintMatched) {
           return next.handle(request);
         }
         return throwError(() => new Error('Fingerprint not matched'));
-      }),
+      })
     );
   }
 }
+
 ```
