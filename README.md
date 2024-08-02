@@ -1,13 +1,17 @@
-# certificate-checker
+# Capacitor SSL Pinning
 
 Ionic Capacitor Plugin to perform SSL checking/pinning.
-
-Check SSL certificates
+Will soon be published to npm.
 
 ## Install
 
 ```bash
-npm install certificate-checker
+git clone https://github.com/mchl18/Capacitor-SSL-Pinning
+cd Capacitor-SSL-Pinning
+npm install
+npm run build
+cd /root/of/your/ionic/project
+npm install /path/to/cloned/Capacitor-SSL-Pinning
 npx cap sync
 ```
 
