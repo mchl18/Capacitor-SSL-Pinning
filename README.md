@@ -20,8 +20,10 @@ npx cap sync
 
 ### via website
 
+- get cert via browser: https://superuser.com/questions/1833063/how-to-get-a-certificate-out-of-chrome-now-the-padlock-has-gone
+- open cert in text editor, copy public key to clipboard
 - go to https://www.samltool.com/fingerprint.php
-- enter domain name
+- paste public key into textarea
 - select SHA-256 as Algorithm
 - copy fingerprint (with colons)
 
