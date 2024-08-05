@@ -1,4 +1,4 @@
-package com.tonybluckdruck.certificatechecker;
+package com.michaelgerullis.sslcertificatechecker;
 
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
