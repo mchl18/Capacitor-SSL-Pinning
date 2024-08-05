@@ -4,7 +4,10 @@ Ionic Capacitor Plugin to perform SSL checking/pinning.
 Checks the SSL certificate SHA256 fingerprint of a server and compares it to a provided fingerprint.
 On Android, the plugin also returns some additional information about the certificate.
 
-Note: There are different ways of expressing the fingerprint, some may use colons and others may not. This plugin normalizes the fingerprint to lowercase and removes colons for comparison. While it expects uppercase, it should not make a difference if you use colons or not. However it is recommended to use the format from the docs.
+Note: 
+- On Fingerprints: There are different ways of expressing the fingerprint, some may use colons and others may not. This plugin normalizes the fingerprint to lowercase and removes colons for comparison. While it expects uppercase, it should not make a difference if you use colons or not. However it is recommended to use the format from the docs.
+- On Subject: The subject is the hostname of the certificate. On Android, the plugin returns the hostname of the certificate. On iOS, the plugin returns URL it was given.
+- On Issuer: The issuer is the issuer of the certificate. There are different formats on iOS and Android, their results are not guaranteed to be the same.
 
 [![HitCount](https://hits.dwyl.com/mchl18/capacitor-ssl-pinning.svg)](https://hits.dwyl.com/mchl18/capacitor-ssl-pinning)
 
