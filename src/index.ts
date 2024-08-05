@@ -11,4 +11,5 @@ const SSLCertificateChecker = registerPlugin<SSLCertificateCheckerPlugin>(
 
 export * from './definitions';
 export * from './types';
+
 export { SSLCertificateChecker };
