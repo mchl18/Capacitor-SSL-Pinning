@@ -10,8 +10,8 @@ export type SSLCertificateCheckerResult = {
    */
   subject?: string;
   /**
-   * The issuer of the certificate
-   * @platform Android
+   * The issuer of the certificate.
+   * Results vary between iOS and Android.
    */
   issuer?: string;
   /**
