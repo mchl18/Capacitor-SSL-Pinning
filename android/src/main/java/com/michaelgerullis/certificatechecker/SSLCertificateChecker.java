@@ -51,6 +51,7 @@ public class SSLCertificateChecker extends Plugin {
                 result.put("validFrom", x509cert.getNotBefore().toString());
                 result.put("validTo", x509cert.getNotAfter().toString());
                 result.put("fingerprint", actualFingerprint);
+                result.put("expectedFingerprint", expectedFingerprint);
                 result.put("fingerprintMatched", expectedFingerprint.equalsIgnoreCase(actualFingerprint));
             }
             call.resolve(result);

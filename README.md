@@ -1,7 +1,7 @@
 # Capacitor SSL Pinning
 
 Ionic Capacitor Plugin to perform SSL checking/pinning.
-Checks the SSL certificate of a server and compares the fingerprint to a provided fingerprint.
+Checks the SSL certificate SHA256 fingerprint of a server and compares it to a provided fingerprint.
 On Android, the plugin also returns some additional information about the certificate.
 
 [![HitCount](https://hits.dwyl.com/mchl18/capacitor-ssl-pinning.svg)](https://hits.dwyl.com/mchl18/capacitor-ssl-pinning)
@@ -32,34 +32,15 @@ npx cap sync
 - get cert via browser: https://superuser.com/questions/1833063/how-to-get-a-certificate-out-of-chrome-now-the-padlock-has-gone
 - get fingerprint: `openssl x509 -noout -fingerprint -sha256 -inform pem -in /path/to/cert.pem`
 
+
+
 ## API
 
-<docgen-index>
-
-* [`checkCertificate(...)`](#checkcertificate)
-* [Type Aliases](#type-aliases)
-
-</docgen-index>
-
-<docgen-api>
-<!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
-
-### checkCertificate(...)
-
-```typescript
+checkCertificate(...)
+```
 checkCertificate(options: SSLCertificateCheckerOptions) => Promise<SSLCertificateCheckerResult>
 ```
 
-| Param         | Type                                                                                  |
-| ------------- | ------------------------------------------------------------------------------------- |
-| **`options`** | <code><a href="#sslcertificatecheckeroptions">SSLCertificateCheckerOptions</a></code> |
-
-**Returns:** <code>Promise&lt;<a href="#sslcertificatecheckerresult">SSLCertificateCheckerResult</a>&gt;</code>
-
---------------------
-
-
-### Type Aliases
 
 
 #### SSLCertificateCheckerResult
@@ -111,9 +92,9 @@ export type SSLCertificateCheckerOptions = {
 };
 ```
 
-</docgen-api>
-
 ## Usage
+
+Note:
 
 ```typescript
 SSLCertificateChecker.checkCertificate({

@@ -25,6 +25,11 @@ export type SSLCertificateCheckerResult = {
    */
   validTo?: string;
   /**
+   * The expected fingerprint of the certificate
+   * @platform Android
+   */
+  expectedFingerprint?: string;
+  /**
    * The fingerprint of the certificate
    * @platform Android
    */
