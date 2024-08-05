@@ -1,23 +1,27 @@
 import Foundation
+import Capacitor
 import CryptoKit
 
 class SSLCertificateChecker {
-    func checkCertificate(_ urlString: String, expectedFingerprint: String) -> Bool {
+    func checkCertificate(_ urlString: String, expectedFingerprint: String) -> [String: Any] {
         guard let url = URL(string: urlString) else {
             print("Invalid URL")
-            return false
+            return ["error": "Invalid URL"]
         }
-        // add a check for https://
         guard url.scheme == "https" else {
             print("URL is not HTTPS")
-            return false
+            return ["error": "URL is not HTTPS"]
         }
 
         let semaphore = DispatchSemaphore(value: 0)
-        var result = false
+        var result: [String: Any] = [:]
 
-        let session = URLSession(configuration: .ephemeral, delegate: CertificateCheckDelegate(expectedFingerprint: expectedFingerprint) { isValid in
-            result = isValid
+        let session = URLSession(configuration: .ephemeral, delegate: CertificateCheckDelegate(expectedFingerprint: expectedFingerprint) { isValid, actualFingerprint in
+            result = [
+                "expectedFingerprint": expectedFingerprint.uppercased(),
+                "actualFingerprint": actualFingerprint.uppercased(),
+                "fingerprintMatched": isValid
+            ]
             semaphore.signal()
         }, delegateQueue: nil)
 
@@ -34,29 +38,27 @@ class SSLCertificateChecker {
 
 class CertificateCheckDelegate: NSObject, URLSessionDelegate {
     private let expectedFingerprint: String
-    private let completion: (Bool) -> Void
+    private let completion: (Bool, String) -> Void
 
-    // init is the initializer for the class
-    init(expectedFingerprint: String, completion: @escaping (Bool) -> Void) {
+    init(expectedFingerprint: String, completion: @escaping (Bool, String) -> Void) {
         self.expectedFingerprint = expectedFingerprint
         self.completion = completion
     }
 
-    // urlSession is the method that is called when a URLSession receives a challenge
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         guard let serverTrust = challenge.protectionSpace.serverTrust,
               let certificate = SecTrustGetCertificateAtIndex(serverTrust, 0) else {
-            completion(false)
+            completion(false, "")
             completionHandler(.cancelAuthenticationChallenge, nil)
             return
         }
 
-        let fingerprint = certificateFingerprint(certificate)
-        print("Fingerprint: \(fingerprint)")
+        let actualFingerprint = certificateFingerprint(certificate)
+        print("Actual Fingerprint: \(actualFingerprint)")
         print("Expected fingerprint: \(expectedFingerprint)")
-        let isValid = fingerprint.lowercased() == expectedFingerprint.lowercased()
+        let isValid = actualFingerprint.lowercased() == expectedFingerprint.lowercased()
 
-        completion(isValid)
+        completion(isValid, actualFingerprint)
 
         if isValid {
             completionHandler(.useCredential, URLCredential(trust: serverTrust))
@@ -65,7 +67,6 @@ class CertificateCheckDelegate: NSObject, URLSessionDelegate {
         }
     }
 
-    // certificateFingerprint is the method that gets the fingerprint of the certificate
     private func certificateFingerprint(_ certificate: SecCertificate) -> String {
         if let data = SecCertificateCopyData(certificate) as Data? {
             let hash = SHA256.hash(data: data)

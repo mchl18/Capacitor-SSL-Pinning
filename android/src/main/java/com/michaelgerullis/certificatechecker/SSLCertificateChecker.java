@@ -50,14 +50,27 @@ public class SSLCertificateChecker extends Plugin {
                 result.put("issuer", x509cert.getIssuerX500Principal().getName());
                 result.put("validFrom", x509cert.getNotBefore().toString());
                 result.put("validTo", x509cert.getNotAfter().toString());
-                result.put("fingerprint", actualFingerprint);
-                result.put("expectedFingerprint", expectedFingerprint);
+                // Normalize actualFingerprint by adding colons
+                String normalizedFingerprint = normalizeFingerprint(actualFingerprint);
+                result.put("actualFingerprint", normalizedFingerprint);
+                result.put("expectedFingerprint", call.getString("fingerprint"));
                 result.put("fingerprintMatched", expectedFingerprint.equalsIgnoreCase(actualFingerprint));
             }
             call.resolve(result);
         } catch (Exception e) {
             call.reject("Certificate check failed: " + e.getMessage());
         }
+    }
+
+    private String normalizeFingerprint(String fingerprint) {
+        StringBuilder normalized = new StringBuilder();
+        for (int i = 0; i < fingerprint.length(); i++) {
+            if (i > 0 && i % 2 == 0) {
+                normalized.append(':');
+            }
+            normalized.append(fingerprint.charAt(i));
+        }
+        return normalized.toString();
     }
 
     // getCertificate is a private method that gets the certificate from the server

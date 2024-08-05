@@ -1,10 +1,6 @@
 import Foundation
 import Capacitor
 
-/**
- * Please read the Capacitor iOS Plugin Development Guide
- * here: https://capacitorjs.com/docs/plugins/ios
- */
 @objc(SSLCertificateCheckerPlugin)
 public class SSLCertificateCheckerPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "SSLCertificateCheckerPlugin"
@@ -22,6 +18,6 @@ public class SSLCertificateCheckerPlugin: CAPPlugin, CAPBridgedPlugin {
         }
         
         let result = implementation.checkCertificate(url, expectedFingerprint: fingerprint)
-        call.resolve(["fingerprintMatched": result])
+        call.resolve(result)
     }
 }
