@@ -4,6 +4,21 @@ Ionic Capacitor Plugin to perform SSL checking/pinning.
 Checks the SSL certificate SHA256 fingerprint of a server and compares it to a provided fingerprint.
 On Android, the plugin also returns some additional information about the certificate.
 
+This software implements SSL (Secure Sockets Layer) pinning as a security measure. It is provided under the MIT License. The SSL pinning code included in this project is provided "as is" without warranty of any kind, express or implied.
+Important Notes:
+
+Security Measure: SSL pinning is designed to enhance security by validating server certificates against known, trusted certificates or public keys. However, it is not a guarantee of absolute security.
+Implementation Responsibility: The effectiveness of SSL pinning depends on correct implementation and maintenance. Users of this code are responsible for ensuring proper implementation and regular updates to the pinned certificates or keys.
+Maintenance Requirements: SSL pinning requires ongoing maintenance. Failure to update pinned certificates before they expire can result in app failure or inability to connect to servers.
+No Warranty: The authors and copyright holders of this software do not warrant that the SSL pinning code will meet your requirements, operate without interruption, or be error-free.
+Limitation of Liability: In no event shall the authors or copyright holders be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the software or the use or other dealings in the software.
+Testing and Verification: Users of this code are responsible for thoroughly testing the SSL pinning implementation in their specific environment and use case.
+Compliance: Ensure that your use of SSL pinning complies with all applicable laws, regulations, and platform policies.
+No Guarantee Against All Attacks: While SSL pinning can protect against certain types of attacks, it does not guarantee protection against all possible security threats or vulnerabilities.
+Potential Impact on Functionality: Be aware that SSL pinning may interfere with certain development tools, debugging processes, or network inspection tools. Ensure you have a way to disable pinning for development and testing purposes.
+
+By using this SSL pinning code, you acknowledge that you have read this disclaimer and agree to its terms. It is recommended to seek the advice of security professionals for critical implementations and to stay informed about best practices in mobile and network security.
+
 Note: 
 - On Fingerprints: There are different ways of expressing the fingerprint, some may use colons and others may not. This plugin normalizes the fingerprint to lowercase and removes colons for comparison. While it expects uppercase, it should not make a difference if you use colons or not. However it is recommended to use the format from the docs.
 - On Subject: The subject is the hostname of the certificate. On Android, the plugin returns the hostname of the certificate. On iOS, the plugin returns URL it was given.
