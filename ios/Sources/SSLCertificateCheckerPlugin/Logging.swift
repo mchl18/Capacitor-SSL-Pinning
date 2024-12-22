@@ -1,3 +1,5 @@
+import Capacitor
+
 /**
  * Utility function for logging messages with a custom prefix.
  *
