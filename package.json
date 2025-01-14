@@ -1,6 +1,6 @@
 {
   "name": "capacitor-ssl-pinning",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Check/pin SSL certificates",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -13,7 +13,8 @@
     "ios/Sources",
     "ios/Tests",
     "Package.swift",
-    "CapacitorSslPinning.podspec"
+    "CapacitorSslPinning.podspec",
+    "bin/"
   ],
   "author": "mgerullis@pm.me",
   "license": "MIT",
@@ -46,12 +47,15 @@
     "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
     "swiftlint": "node-swiftlint",
     "docgen": "docgen --api SSLCertificateCheckerPlugin --output-readme README.md --output-json dist/docs.json",
-    "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.mjs",
+    "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.mjs && npm run chmod-cli",
     "clean": "rimraf ./dist",
     "watch": "tsc --watch",
     "removePacked": "rimraf -g capacitor-ssl-pinning-*.tgz",
     "publish:locally": "npm run removePacked && npm run build && npm pack",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "debug-build": "tsc --listFiles && npm run build",
+    "chmod-cli": "[ -f dist/cli/fingerprint.js ] && chmod +x dist/cli/fingerprint.js || true",
+    "postinstall": "[ -f dist/cli/fingerprint.js ] && chmod +x dist/cli/fingerprint.js || true"
   },
   "devDependencies": {
     "@capacitor/android": "^6.2.0",
@@ -61,13 +65,15 @@
     "@ionic/eslint-config": "^0.4.0",
     "@ionic/prettier-config": "^4.0.0",
     "@ionic/swiftlint-config": "^2.0.0",
+    "@types/yargs": "^17.0.33",
     "eslint": "^9.17.0",
     "prettier": "~3.4.2",
     "prettier-plugin-java": "~2.6.5",
     "rimraf": "^6.0.1",
     "rollup": "^4.29.1",
     "swiftlint": "^2.0.0",
-    "typescript": "~5.4.5"
+    "typescript": "~5.4.5",
+    "yargs": "^17.7.2"
   },
   "peerDependencies": {
     "@capacitor/core": "^6.2.0"
@@ -84,5 +90,9 @@
     "android": {
       "src": "android"
     }
+  },
+  "bin": {
+    "ssl-fingerprint": "dist/cli/fingerprint.js",
+    "capacitor-ssl-fingerprint": "dist/cli/fingerprint.js"
   }
 }

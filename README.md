@@ -69,6 +69,92 @@ npx cap sync
 openssl x509 -noout -fingerprint -sha256 -inform pem -in /path/to/cert.pem
 ```
 
+### Via Built-in CLI Tool
+
+This package includes a CLI tool that can fetch and display SSL certificate information for any domain.
+
+Install globally:
+```bash
+npm install -g capacitor-ssl-pinning
+# or
+yarn global add capacitor-ssl-pinning
+```
+
+Or use it in your project:
+```bash
+npm install capacitor-ssl-pinning
+# or
+yarn add capacitor-ssl-pinning
+```
+
+Usage:
+```bash
+# Using npx command
+npx ssl-fingerprint example.com
+
+# Or if installed globally
+ssl-fingerprint example.com
+
+# Save output to a file
+ssl-fingerprint example.com --out certs.json
+
+# Save just the fingerprints in TypeScript format
+ssl-fingerprint example.com --out fingerprints.ts --format fingerprints
+```
+
+You can also add it as a script in your package.json:
+```json
+{
+  "scripts": {
+    "generate-fingerprint": "ssl-fingerprint example.com"
+  }
+}
+```
+
+Then run it with:
+```bash
+npm run generate-fingerprint
+```
+
+The tool will display:
+- Domain name
+- Certificate subject
+- Certificate issuer
+- Valid from date
+- Valid to date
+- SHA256 fingerprint
+
+Example output:
+```json
+[
+  {
+    "domain": "example.com",
+    "subject": {
+      "C": "US",
+      "ST": "California",
+      "L": "Los Angeles",
+      "O": "Internet Corporation for Assigned Names and Numbers",
+      "CN": "www.example.org"
+    },
+    "issuer": {
+      "C": "US",
+      "O": "DigiCert Inc",
+      "CN": "DigiCert Global G2 TLS RSA SHA256 2020 CA1"
+    },
+    "validFrom": "Jan 30 00:00:00 2024 GMT",
+    "validTo": "Mar  1 23:59:59 2025 GMT",
+    "fingerprint": "EF:BA:26:D8:C1:CE:37:79:AC:77:63:0A:90:F8:21:63:A3:D6:89:2E:D6:AF:EE:40:86:72:CF:19:EB:A7:A3:62"
+  }
+]
+```
+
+When using `--format fingerprints`, the output will be in TypeScript format:
+```typescript
+export const fingerprints = [
+  "EF:BA:26:D8:C1:CE:37:79:AC:77:63:0A:90:F8:21:63:A3:D6:89:2E:D6:AF:EE:40:86:72:CF:19:EB:A7:A3:62"
+];
+```
+
 ## API
 
 ### `checkCertificate`

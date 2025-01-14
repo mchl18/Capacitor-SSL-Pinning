@@ -14,7 +14,13 @@
     "pretty": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2017",
+    "types": ["node"]
   },
-  "files": ["src/index.ts"]
+  "files": [
+    "src/index.ts",
+    "src/cli/fingerprint.ts"
+  ],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
