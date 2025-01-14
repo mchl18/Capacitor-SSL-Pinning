@@ -92,11 +92,17 @@ Usage:
 # Using npx command
 npx ssl-fingerprint example.com
 
+# Multiple domains
+npx ssl-fingerprint example.com example.org example.net
+
 # Or if installed globally
 ssl-fingerprint example.com
 
 # Save output to a file
 ssl-fingerprint example.com --out certs.json
+
+# Save multiple domains to file
+ssl-fingerprint example.com example.org example.net --out certs.json
 
 # Save just the fingerprints in TypeScript format
 ssl-fingerprint example.com --out fingerprints.ts --format fingerprints
@@ -106,7 +112,8 @@ You can also add it as a script in your package.json:
 ```json
 {
   "scripts": {
-    "generate-fingerprint": "ssl-fingerprint example.com"
+    "generate-fingerprint": "ssl-fingerprint example.com",
+    "generate-all-fingerprints": "ssl-fingerprint example.com example.org example.net"
   }
 }
 ```
@@ -114,6 +121,8 @@ You can also add it as a script in your package.json:
 Then run it with:
 ```bash
 npm run generate-fingerprint
+# or for multiple domains
+npm run generate-all-fingerprints
 ```
 
 The tool will display:
