@@ -1,6 +1,6 @@
 {
   "name": "capacitor-ssl-pinning",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Check/pin SSL certificates",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -14,7 +14,8 @@
     "ios/Tests",
     "Package.swift",
     "CapacitorSslPinning.podspec",
-    "bin/"
+    "bin/",
+    "scripts/"
   ],
   "author": "mgerullis@pm.me",
   "license": "MIT",
@@ -54,8 +55,8 @@
     "publish:locally": "npm run removePacked && npm run build && npm pack",
     "prepublishOnly": "npm run build",
     "debug-build": "tsc --listFiles && npm run build",
-    "chmod-cli": "[ -f dist/cli/fingerprint.js ] && chmod +x dist/cli/fingerprint.js || true",
-    "postinstall": "[ -f dist/cli/fingerprint.js ] && chmod +x dist/cli/fingerprint.js || true"
+    "chmod-cli": "node scripts/chmod.js",
+    "postinstall": "node scripts/chmod.js"
   },
   "devDependencies": {
     "@capacitor/android": "^6.2.0",
